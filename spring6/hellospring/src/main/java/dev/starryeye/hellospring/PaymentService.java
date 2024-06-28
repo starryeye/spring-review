@@ -16,28 +16,11 @@ public class PaymentService {
     public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) throws IOException {
 
         /**
-         * todo
-         *  환율 가져오기
-         *      https://open.er-api.com/v6/latest/USD
-         *  금액 계산
-         *  유효시간 계산
+         * prepare 비즈니스 로직이 변경될 때, 이 부분에 변경이 일어난다. (SRP)
          */
 
-        // 환율 가져오기
-        URL url = new URL("https://open.er-api.com/v6/latest/" + currency);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String response = bufferedReader.lines().collect(Collectors.joining());
-        bufferedReader.close();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        ExchangeRateData data = objectMapper.readValue(response, ExchangeRateData.class);
-        BigDecimal exchangeRate = data.rates().get("KRW");
-
-        // 금액 계산
+        BigDecimal exchangeRate = getExchangeRate(currency, "KRW");
         BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exchangeRate);
-
-        // 유효 시간 계산
         LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
 
         return Payment.builder()
@@ -48,6 +31,24 @@ public class PaymentService {
                 .convertedAmount(convertedAmount)
                 .validUntil(validUntil)
                 .build();
+    }
+
+    private static BigDecimal getExchangeRate(String baseCurrency, String quoteCurrency) throws IOException {
+
+        /**
+         * 환율을 어떻게 가져올지가 변경될 때, 이 부분에 변경이 일어난다. (SRP)
+         */
+
+        URL url = new URL("https://open.er-api.com/v6/latest/" + baseCurrency);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String response = bufferedReader.lines().collect(Collectors.joining());
+        bufferedReader.close();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ExchangeRateData data = objectMapper.readValue(response, ExchangeRateData.class);
+        BigDecimal exchangeRate = data.rates().get(quoteCurrency);
+        return exchangeRate;
     }
 
     public static void main(String[] args) throws IOException {
