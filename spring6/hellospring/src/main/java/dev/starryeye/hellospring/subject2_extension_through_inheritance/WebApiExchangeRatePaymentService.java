@@ -1,4 +1,4 @@
-package dev.starryeye.hellospring;
+package dev.starryeye.hellospring.subject2_extension_through_inheritance;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

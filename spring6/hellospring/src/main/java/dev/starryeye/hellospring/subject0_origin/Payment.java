@@ -1,4 +1,4 @@
-package dev.starryeye.hellospring;
+package dev.starryeye.hellospring.subject0_origin;
 
 import lombok.Builder;
 import lombok.Getter;
