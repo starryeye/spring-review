@@ -1,5 +1,7 @@
-package dev.starryeye.hellospring.subject10_dependency_inversion_principle.payment;
+package dev.starryeye.hellospring.subject10_dependency_inversion_principle.payment.subject12_stubbing_by_dependency_injection;
 
+import dev.starryeye.hellospring.subject10_dependency_inversion_principle.payment.Payment;
+import dev.starryeye.hellospring.subject10_dependency_inversion_principle.payment.PaymentService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

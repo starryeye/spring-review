@@ -1,6 +1,8 @@
-package dev.starryeye.hellospring.subject10_dependency_inversion_principle.payment;
+package dev.starryeye.hellospring.subject10_dependency_inversion_principle.payment.subject11_test_code;
 
 import dev.starryeye.hellospring.subject10_dependency_inversion_principle.exchangerate.WebApiExchangeRateProvider;
+import dev.starryeye.hellospring.subject10_dependency_inversion_principle.payment.Payment;
+import dev.starryeye.hellospring.subject10_dependency_inversion_principle.payment.PaymentService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +11,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentServiceTest {
 
