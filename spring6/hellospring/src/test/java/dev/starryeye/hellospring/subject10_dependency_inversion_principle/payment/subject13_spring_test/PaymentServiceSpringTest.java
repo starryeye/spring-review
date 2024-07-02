@@ -27,8 +27,10 @@ class PaymentServiceSpringTest {
      *
      * 참고
      * 원래 지식으로는 @TestConfiguration + @Import + @SpringBootTest 였는데..
+     * -> Application 전체 빈 로딩 + @Import 의 빈들 추가
      * 좀더 가볍게 사용을 원하면
      * @TestConfiguration + @ContextConfiguration + @ExtendWith(SpringExtension.class)
+     * -> Spring container 빈깡통 + @ContextConfiguration 의 빈들 추가
      * 로 사용하면 된다..
      *
      * 참고
