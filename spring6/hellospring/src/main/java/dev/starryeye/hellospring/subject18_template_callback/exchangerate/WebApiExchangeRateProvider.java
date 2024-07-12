@@ -14,6 +14,10 @@ import java.net.URISyntaxException;
 
 public class WebApiExchangeRateProvider implements ExchangeRateProvider {
 
+    /**
+     * template callback pattern 은 전략 패턴이라 볼 수 있다.
+     */
+
     @Override
     public BigDecimal getExchangeRate(String baseCurrency, String quoteCurrency) {
         /**
@@ -25,7 +29,7 @@ public class WebApiExchangeRateProvider implements ExchangeRateProvider {
         String url = "https://open.er-api.com/v6/latest/" + baseCurrency;
 
         /**
-         * new SimpleApiExecutor
+         * new SimpleApiExecutor, new ErApiExchangeRateExtractor
          * -> callback
          *
          * callback 은 익명 내부 클래스, 람다로도 가능하다.
