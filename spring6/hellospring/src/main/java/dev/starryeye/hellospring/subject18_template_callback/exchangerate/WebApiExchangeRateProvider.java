@@ -25,10 +25,11 @@ public class WebApiExchangeRateProvider implements ExchangeRateProvider {
 
         /**
          * new SimpleApiExecutor, new ErApiExchangeRateExtractor
+         * new HttpClientApiExecutor
          * -> callback
          *
          * callback 은 익명 내부 클래스, 람다로도 가능하다.
          */
-        return apiTemplate.getExchangeRate(quoteCurrency, url, new SimpleApiExecutor(), new ErApiExchangeRateExtractor());
+        return apiTemplate.getExchangeRate(quoteCurrency, url, new HttpClientApiExecutor(), new ErApiExchangeRateExtractor());
     }
 }
