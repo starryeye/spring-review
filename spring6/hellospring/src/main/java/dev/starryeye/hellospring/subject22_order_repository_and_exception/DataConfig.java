@@ -1,5 +1,7 @@
-package dev.starryeye.hellospring.subject21_order;
+package dev.starryeye.hellospring.subject22_order_repository_and_exception;
 
+import dev.starryeye.hellospring.subject22_order_repository_and_exception.data.OrderRepository;
+import jakarta.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -33,7 +35,7 @@ public class DataConfig {
 
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource()); // DataSource
-        emf.setPackagesToScan("dev.starryeye.hellospring.subject21_order"); // @Entity scan
+        emf.setPackagesToScan("dev.starryeye.hellospring.subject22_order_repository_and_exception"); // @Entity scan
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter() {{
             setDatabase(Database.H2);
             setGenerateDdl(true);
@@ -41,5 +43,10 @@ public class DataConfig {
         }});
 
         return emf;
+    }
+
+    @Bean
+    public OrderRepository orderRepository(EntityManagerFactory emf) {
+        return new OrderRepository(emf);
     }
 }
