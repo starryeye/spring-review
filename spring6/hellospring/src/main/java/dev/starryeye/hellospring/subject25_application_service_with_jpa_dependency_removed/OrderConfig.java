@@ -6,14 +6,14 @@ import dev.starryeye.hellospring.subject25_application_service_with_jpa_dependen
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @Import(DataConfig.class) // OrderConfig 를 구성할 때, DataConfig 도 구성한다.
 public class OrderConfig {
 
     @Bean
-    public OrderService orderService(JpaTransactionManager transactionManager) {
+    public OrderService orderService(PlatformTransactionManager transactionManager) {
         return new OrderService(orderRepository(), transactionManager);
     }
 
