@@ -1,0 +1,10 @@
+package dev.starryeye.hellospring.subject28_transaction_proxy.order;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+public interface OrderService {
+    Order createOrder(String no, BigDecimal totalPrice);
+
+    List<Order> createOrders(List<CreateOrderRequest> orderRequests);
+}
